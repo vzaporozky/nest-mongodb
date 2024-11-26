@@ -1,30 +1,40 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
 
 @Schema()
 export class User {
-  @Prop({ example: '1', description: 'Уникальный идентификатор' })
+  @ApiProperty({ example: '1', description: 'Unique identificator' })
+  @Prop()
   id: number;
-  @Prop({ example: 'user@mail.ru', description: 'Почтовый адрес' })
+
+  @ApiProperty({ example: 'user@mail.ru', description: 'Post address' })
+  @Prop()
   email: string;
-  @Prop({ example: '12345678', description: 'Пароль' })
+
+  @ApiProperty({ example: '12345678', description: 'Password' })
+  @Prop()
   password: string;
 
-  @Prop({ example: 'true', description: 'Забанен или нет' })
+  @ApiProperty({ example: 'true', description: 'Ban or not' })
+  @Prop()
   banned: boolean;
 
-  @Prop({ example: 'За хулиганство', description: 'Причина блокировки' })
+  @ApiProperty({ example: 'because of spam', description: 'Reason for ban' })
+  @Prop()
   banReason: string;
 
   // @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Owner' }] })
   // owner: Owner[];
 
   // @BelongsToMany(() => Role, () => UserRoles)
+  // @Prop()
   // roles: Role[];
 
   // @HasMany(() => Post)
+  // @Prop()
   // posts: Post[];
 }
 

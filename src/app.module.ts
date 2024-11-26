@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CatsModule } from './Cat/cat.module';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 
 const password = require('../password');
 
@@ -17,9 +16,10 @@ const password = require('../password');
       `mongodb+srv://vzaporozky:${password}@mongo-test.1nbuq.mongodb.net/?retryWrites=true&w=majority&appName=mongo-test`,
     ),
     CatsModule,
+    UsersModule,
     // OwnersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

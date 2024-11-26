@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 import { UsersService } from './users.service';
 
-@Controller('users')
+@Controller('/api')
 export class UsersController {
   constructor(private userService: UsersService) {}
 
-  @Get('/cats')
+  @Get('/user')
   getUsers() {
     return this.userService.findAll();
   }
