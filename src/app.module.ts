@@ -4,6 +4,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CatsModule } from './Cat/cat.module';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
+import { RolesController } from './roles/roles.controller';
+import { RolesModule } from './roles/roles.module';
 
 const password = require('../password');
 
@@ -12,15 +14,13 @@ const password = require('../password');
     ConfigModule.forRoot({
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    // MongooseModule.forRoot(
-    //   `mongodb+srv://vzaporozky:${password}@mongo-test.1nbuq.mongodb.net/?retryWrites=true&w=majority&appName=mongo-test`,
-    // ),
     MongooseModule.forRoot(
-      `mongodb+srv://vzaporozky:${password}@mongo-test.1nbuq.mongodb.net/sample?retryWrites=true&w=majority&appName=mongo-sample`,
+      `mongodb+srv://vzaporozky:${process.env.PASSWORD || password}@cluster0.1nbuq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
     ),
 
     CatsModule,
     UsersModule,
+    RolesModule,
     // OwnersModule,
   ],
   controllers: [],

@@ -17,6 +17,14 @@ export class UsersService {
     return createdCat.save();
   }
 
+  async getUserByEmail(email: string) {
+    const user = await this.userModel.findOne({
+      where: { email },
+      include: { all: true },
+    });
+    return user;
+  }
+
   // constructor(@InjectModel(User) private userModel: typeof User,
   // private roleService: RolesService) {}
 
@@ -25,14 +33,6 @@ export class UsersService {
   //   const role = await this.roleService.getRoleByValue('ADMIN');
   //   await user.$set('roles', [role.id]);
   //   user.roles = [role];
-  //   return user;
-  // }
-
-  // async getUserByEmail(email: string) {
-  //   const user = await this.userModel.findOne({
-  //     where: { email },
-  //     include: { all: true },
-  //   });
   //   return user;
   // }
 
