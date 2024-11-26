@@ -12,9 +12,13 @@ const password = require('../password');
     ConfigModule.forRoot({
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
+    // MongooseModule.forRoot(
+    //   `mongodb+srv://vzaporozky:${password}@mongo-test.1nbuq.mongodb.net/?retryWrites=true&w=majority&appName=mongo-test`,
+    // ),
     MongooseModule.forRoot(
-      `mongodb+srv://vzaporozky:${password}@mongo-test.1nbuq.mongodb.net/?retryWrites=true&w=majority&appName=mongo-test`,
+      `mongodb+srv://vzaporozky:${password}@mongo-test.1nbuq.mongodb.net/sample?retryWrites=true&w=majority&appName=mongo-sample`,
     ),
+
     CatsModule,
     UsersModule,
     // OwnersModule,
