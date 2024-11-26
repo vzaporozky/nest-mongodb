@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CatsModule } from './Cat/cat.modul';
+import { CatsModule } from './Cat/cat.module';
 import { ConfigModule } from '@nestjs/config';
 
 const password = require('../password');
