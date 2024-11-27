@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument } from 'mongoose';
+import { Role } from 'src/roles/roles.scheme';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -26,12 +27,9 @@ export class User {
   @Prop()
   banReason: string;
 
-  // @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Owner' }] })
-  // owner: Owner[];
-
-  // @BelongsToMany(() => Role, () => UserRoles)
-  // @Prop()
-  // roles: Role[];
+  @ApiProperty({ example: 'User`s role', description: 'What role user have' })
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role' }] })
+  roles: Role[];
 
   // @HasMany(() => Post)
   // @Prop()

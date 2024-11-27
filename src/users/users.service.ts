@@ -3,10 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './users.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
+import { RolesService } from 'src/roles/roles.service';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<User>,
+    private roleService: RolesService,
+  ) {}
 
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
@@ -25,16 +29,13 @@ export class UsersService {
     return user;
   }
 
-  // constructor(@InjectModel(User) private userModel: typeof User,
-  // private roleService: RolesService) {}
-
-  // async createUser(userDto: CreateUserDto) {
-  //   const user = await this.userModel.create(userDto);
-  //   const role = await this.roleService.getRoleByValue('ADMIN');
-  //   await user.$set('roles', [role.id]);
-  //   user.roles = [role];
-  //   return user;
-  // }
+  async createUser(userDto: CreateUserDto) {
+    const user = await this.userModel.create(userDto);
+    const role = await this.roleService.getRoleByValue('ADMIN');
+    await user.$set('roles', [role.id]);
+    user.roles = [role];
+    return user;
+  }
 
   // async addRole(dto: AddRoleDto) {
   //   const user = await this.userRepository.findByPk(dto.userId);
