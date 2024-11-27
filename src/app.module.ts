@@ -6,6 +6,7 @@ import { CatsModule } from './Cat/cat.module';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { AuthModule } from './auth/auth.module';
+import { PostsModule } from './posts/posts.module';
 
 const password = require('../password');
 
@@ -22,6 +23,7 @@ const password = require('../password');
     UsersModule,
     RolesModule,
     AuthModule,
+    PostsModule,
   ],
   controllers: [],
   providers: [],
