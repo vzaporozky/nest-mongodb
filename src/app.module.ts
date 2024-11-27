@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
+import { FilesModule } from './files/files.module';
 
 const password = require('../password');
 
@@ -24,6 +25,7 @@ const password = require('../password');
     RolesModule,
     AuthModule,
     PostsModule,
+    FilesModule,
   ],
   controllers: [],
   providers: [],
