@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 import { CatService } from './cat.service';
 
-@Controller('/api')
+@Controller('/cat')
 export class CatController {
   constructor(private catService: CatService) {}
 
-  @Get('/cats')
+  @Get('')
   getUsers() {
     return this.catService.findAll();
   }

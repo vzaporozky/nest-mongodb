@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
 import { CatsModule } from './Cat/cat.module';
-import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
-import { RolesController } from './roles/roles.controller';
 import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
 
 const password = require('../password');
 
@@ -21,7 +21,7 @@ const password = require('../password');
     CatsModule,
     UsersModule,
     RolesModule,
-    // OwnersModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

@@ -4,7 +4,7 @@ import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { User } from './users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 
-@Controller('/api')
+@Controller('/user')
 export class UsersController {
   constructor(private userService: UsersService) {}
 
@@ -12,14 +12,14 @@ export class UsersController {
   @ApiResponse({ status: 200, type: [User] })
   // @Roles("ADMIN")
   // @UseGuards(RolesGuard)
-  @Get('/user')
+  @Get('')
   getUsers() {
     return this.userService.findAll();
   }
 
   @ApiOperation({ summary: 'Create user' })
   @ApiResponse({ status: 200, type: User })
-  @Post('/user')
+  @Post('')
   create(@Body() userDto: CreateUserDto) {
     return this.userService.create(userDto);
   }

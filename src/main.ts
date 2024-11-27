@@ -6,6 +6,8 @@ async function start() {
   const PORT = process.env.PORT || 8080;
   const app = await NestFactory.create(AppModule);
 
+  app.setGlobalPrefix('/api');
+
   const config = new DocumentBuilder()
     .setTitle('User forum example')
     .setDescription('The user forum API description')
