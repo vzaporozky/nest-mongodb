@@ -1,8 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { User } from './users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Roles } from 'src/auth/roles-auth.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { BanUserDto } from './dto/ban-user.dto';
 
 @Controller('/user')
 export class UsersController {
@@ -10,8 +13,8 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, type: [User] })
-  // @Roles("ADMIN")
-  // @UseGuards(RolesGuard)
+  @Roles('ADMIN')
+  @UseGuards(RolesGuard)
   @Get('')
   getUsers() {
     return this.userService.findAll();
@@ -22,5 +25,14 @@ export class UsersController {
   @Post('')
   create(@Body() userDto: CreateUserDto) {
     return this.userService.create(userDto);
+  }
+
+  @ApiOperation({ summary: 'ban user' })
+  @ApiResponse({ status: 200 })
+  @Roles('ADMIN')
+  @UseGuards(RolesGuard)
+  @Post('/ban')
+  ban(@Body() dto: BanUserDto) {
+    return this.userService.ban(dto);
   }
 }
