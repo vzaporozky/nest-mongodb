@@ -1,3 +1,3 @@
 const password = 'password-example';
 
-module.exports = password;
+export default password;
