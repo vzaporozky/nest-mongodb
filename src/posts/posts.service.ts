@@ -1,21 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Post } from './posts.schema';
+import { Model } from 'mongoose';
+import { FilesService } from 'src/files/files.service';
 
 @Injectable()
 export class PostsService {
-  create(createPostDto: CreatePostDto) {
-    return 'This action adds a new post';
-  }
+  constructor(
+    @InjectModel(Post.name) private postModel: Model<Post>,
+    private fileService: FilesService,
+  ) {}
 
-  findAll() {
-    return `This action returns all posts`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+  async create(dto: CreatePostDto, image: any) {
+    const fileName = await this.fileService.createFile(image);
+    const post = await this.postModel.create({ ...dto, image: fileName });
+    return post;
   }
 }

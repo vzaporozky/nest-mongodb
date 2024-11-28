@@ -23,10 +23,6 @@ export class Post {
   @Prop()
   image: string;
 
-  // @ForeignKey(() => User)
-  @Prop()
-  userId: number;
-
   @ApiProperty({ example: 'User`s role', description: 'author of post' })
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
   author: User;
