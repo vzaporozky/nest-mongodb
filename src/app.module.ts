@@ -8,6 +8,8 @@ import { RolesModule } from './roles/roles.module';
 import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import path from 'path';
 
 const password = require('../password');
 
@@ -19,6 +21,9 @@ const password = require('../password');
     MongooseModule.forRoot(
       `mongodb+srv://vzaporozky:${process.env.PASSWORD || password}@cluster0.1nbuq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
     ),
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, 'static'),
+    }),
 
     CatsModule,
     UsersModule,
