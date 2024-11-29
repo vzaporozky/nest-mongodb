@@ -3,10 +3,10 @@ import { ApiProperty } from '@nestjs/swagger';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { User } from 'src/users/users.schema';
 
-export type PostDocument = HydratedDocument<Post>;
+export type PostDocument = HydratedDocument<Posts>;
 
 @Schema()
-export class Post {
+export class Posts {
   @ApiProperty({ example: '1', description: 'Unique identificator' })
   @Prop()
   id: number;
@@ -28,4 +28,4 @@ export class Post {
   author: User;
 }
 
-export const PostSchema = SchemaFactory.createForClass(Post);
+export const PostSchema = SchemaFactory.createForClass(Posts);
