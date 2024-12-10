@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  main:
+    container_name: main
+    build:
+      context: .
+    env_file:
+      - .env.development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 5454:5454
+    command: npm run start:dev
+    # depends_on:
+    #   - mongodb
+    restart: always
+
+  # mongodb:
+  #   container_name: mongodb-test
+  #   image: mongodb:12
+  #   .env_file:
+  #     - .env.development
+  #   environment:
+  #     - name=value
